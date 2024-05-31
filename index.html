@@ -16,8 +16,136 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>HTML</h1>
+					<h3>HyperText Markup Language</h3>
+					<p><small>Lenguaje de Marcas de Hipertexto</small></p>
+				</section>
+				<section>
+					<section>
+						<h1>Introducción a HTML</h1>
+					</section>
+					<section>
+						<h2>¿Qué es HTML?</h2>
+						<p>HTML significa HyperText Markup Language y es el estándar para crear páginas web.</p>
+					</section>
+					<section>
+						<h2>Sintaxis de HTML</h2>
+						<p>HTML utiliza etiquetas (tags) para estructurar el contenido. Cada etiqueta tiene un significado específico y se escribe entre corchetes angulares.</p>
+					</section>
+					<section>
+						<h2>Etiquetas de Apertura y Cierre</h2>
+						<p>La mayoría de las etiquetas HTML tienen una etiqueta de apertura y una de cierre:</p>
+						<pre><code class="language-html">
+					&lt;etiqueta&gt;Contenido&lt;/etiqueta&gt;
+						</code></pre>
+						<p>Ejemplo:</p>
+						<pre><code class="language-html">
+					&lt;p&gt;Este es un párrafo.&lt;/p&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Etiquetas Auto-Cerradas</h2>
+						<p>Algunas etiquetas HTML no necesitan una etiqueta de cierre y se auto-cierran:</p>
+						<pre><code class="language-html">
+					&lt;etiqueta /&gt;
+						</code></pre>
+						<p>Ejemplo:</p>
+						<pre><code class="language-html">
+					&lt;img src="imagen.jpg" alt="Descripción de la imagen" /&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Contenido de una etiqueta</h2>
+						<p>De forma general, las etiquetas que tienen contenido pueden tener texto, otra etiqueta o una combinación de texto con otras etiquetas</p>
+						<p>Las etiquetas HTML pueden anidarse unas dentro de otras para crear estructuras complejas</p>
+						<pre><code class="language-html">
+&lt;div&gt;
+	&lt;h1&gt;Título&lt;/h1&gt;
+	&lt;p&gt;
+		Este es un &lt;strong&gt;párrafo importante&lt;/strong&gt; dentro de un div.
+	&lt;/p&gt;
+&lt;/div&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Atributos</h2>
+						<p>Los atributos se usan para incluir información adicional</p>
+						<p>Una etiqueta puede tener múltiples atributos</p>
+						<pre><code class="language-html">
+					&lt;etiqueta nombre="valor"&gt;Contenido&lt;/etiqueta&gt;
+						</code></pre>
+						<p>Ejemplo:</p>
+						<pre><code class="language-html">
+					&lt;a href="https://www.example.com"&gt;Visita Example&lt;/a&gt;
+						</code></pre>
+					</section>
+					
+					<section>
+						<h2>Estructura Básica de un Documento HTML</h2>
+						<pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;!-- Parte no "visible" de la página --&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;!-- Parte "visible" de la página --&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Elementos Comunes en HTML</h2>
+						<ul>
+							<li>&lt;h1&gt; a &lt;h6&gt; - Encabezados</li>
+							<li>&lt;p&gt; - Párrafo</li>
+							<li>&lt;a&gt; - Enlace</li>
+							<li>&lt;img&gt; - Imagen</li>
+							<li>&lt;ul&gt; y &lt;ol&gt; - Listas</li>
+							<li>&lt;div&gt; y &lt;span&gt; - Contenedores</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Enlaces y Imágenes</h2>
+						<pre><code class="language-html">
+		&lt;a href="https://www.example.com"&gt;Este es un enlace&lt;/a&gt;
+		&lt;img src="ruta/a/imagen.jpg" alt="Descripción de la imagen"&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Listas en HTML</h2>
+						<pre><code class="language-html">
+		&lt;ul&gt;
+			&lt;li&gt;Elemento de lista&lt;/li&gt;
+			&lt;li&gt;Otro elemento&lt;/li&gt;
+		&lt;/ul&gt;
+		
+		&lt;ol&gt;
+			&lt;li&gt;Primer elemento&lt;/li&gt;
+			&lt;li&gt;Segundo elemento&lt;/li&gt;
+		&lt;/ol&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Formularios en HTML</h2>
+						<pre><code class="language-html">
+		&lt;form action="/submit" method="post"&gt;
+			&lt;label for="name"&gt;Nombre:&lt;/label&gt;
+			&lt;input type="text" id="name" name="name"&gt;
+			&lt;br&gt;
+			&lt;input type="submit" value="Enviar"&gt;
+		&lt;/form&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Conclusión</h2>
+						<p>HTML es el lenguaje base de la web, y aprenderlo es el primer paso para convertirte en un desarrollador web.</p>
+						<p>¡Gracias por tu atención!</p>
+					</section>
+				</section>
 			</div>
 		</div>
 
