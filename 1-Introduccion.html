@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Introducción a Lenguajes de Marcas</title>
+    <meta name="author" content="David Badía Núñez">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+        <section>
+          你好！我是你们的“标记语言”课程老师，这门课属于高级多平台应用开发专业两年课程的前半部分。
+          在第一学期，通常通过率是用一百除以第三个素数得到的百分比。
+          可以通过电子邮件联系我：<a href="mailto:david.badia@iepgroup.es">david.badia@iepgroup.es</a>
+        </section>
+        <section>
+            <h1>Dato</h1>
+            <p>Son hechos, cifras o valores sin procesar, que por sí solos no tienen significado.</p>
+        </section>
+        <section>
+            !Hola! Soy vuestro profesor de la asignatura de Lenguajes de Marcas correspondiente a la primera mitad
+            de los dos años que dura el Ciclo Formativo de Grado Superior de Desarrollo de Aplicaciones Multiplataforma.
+            En la primera evaluación suelen aprobar el porcentaje resultante de dividir una centena entre el tercer número primo.
+            Me podéis contactar por email en <a href="mailto:david.badia@iepgroup.es">david.badia@iepgroup.es</a>
+        </section>
+        <section>
+        <h1>Información</h1>
+            <p>Es el resultado de procesar, organizar o interpretar los datos para que tengan sentido y utilidad.</p>
+        </section>
+        <section>
+            <h1>Informática</h1>
+            <p>Es la ciencia que se encarga del tratamiento de la información mediante computadoras.</p>
+        </section>
+        <section>
+            <b>Titulación:</b> Desarrollo de Aplicaciones Multiplataforma (DAM)
+            <br>
+            <b>Duración:</b> 2 años
+            <br>
+            <b>Asignatura:</b> Lenguajes de Marcas
+            <br>
+            <b>Curso:</b> 1º
+            <br>
+            <b>Aprobados:</b> 20%
+            <br>
+            <b>Profesor:</b> David Badía
+            <br>
+            <b>Email:</b> <a href="mailto:david.badia@iepgroup.es">david.badia@iepgroup.es</a>
+        </section>
+        <section>
+          <pre>
+&lt;titulacion&gt;
+    &lt;nombre&gt;Desarrollo de Aplicaciones Multiplataforma (DAM)&lt;/nombre&gt;
+    &lt;duracion&gt;2 años&lt;/duracion&gt;
+    &lt;asignaturas&gt;
+        &lt;asignatura&gt;
+            &lt;nombre&gt;Lenguajes de Marcas&lt;/nombre&gt;
+            &lt;curso&gt;1º&lt;/curso&gt;
+            &lt;aprobados&gt;20%&lt;/aprobados&gt;
+            &lt;profesor&gt;
+                &lt;nombre&gt;David Badía&lt;/nombre&gt;
+                &lt;email&gt;david.badia@iepgroup.es&lt;/email&gt;
+            &lt;/profesor&gt;
+        &lt;/asignatura&gt;
+    &lt;/asignaturas&gt;
+&lt;/titulacion&gt;
+          </pre>
+        </section>
+        <section>
+          <pre>
+&lt;titulacion&gt;
+    &lt;nombre&gt;Desarrollo de Aplicaciones Multiplataforma (DAM)&lt;/nombre&gt;
+    &lt;duracion unit="years"&gt;2&lt;/duracion&gt;
+    &lt;asignaturas&gt;
+        &lt;asignatura&gt;
+            &lt;nombre&gt;Lenguajes de Marcas&lt;/nombre&gt;
+            &lt;curso&gt;1&lt;/curso&gt;
+            &lt;aprobados unit="percentage" exam="1"&gt;20&lt;/aprobados&gt;
+            &lt;profesor&gt;
+                &lt;nombre&gt;David Badía&lt;/nombre&gt;
+                &lt;email&gt;david.badia@iepgroup.es&lt;/email&gt;
+            &lt;/profesor&gt;
+        &lt;/asignatura&gt;
+    &lt;/asignaturas&gt;
+&lt;/titulacion&gt;
+          </pre>
+        </section>
+        <section>
+          <h1>Lenguaje de Marcas</h1>
+          <p>
+            Sistema para etiquetar (TAGS) elementos en un documento. 
+            Utiliza un conjunto de reglas para definir la estructura, el formato y otros atributos de los datos.
+          </p>
+    </div>
+  </div>
+  <script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+</body>
+</html>
