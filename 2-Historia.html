@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Introducción a Lenguajes de Marcas</title>
+    <meta name="author" content="David Badía Núñez">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+      .reveal .slides img {
+        max-width: 80vw;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>¿Es lo mismo Internet y WEB?</h2>
+        </section>
+        <section>
+            <h2>¿WEB necesita Internet?</h2>
+            <h2>¿Internet necesita WEB?</h2>
+        </section>
+        <section>
+            <h2>¿Qué es Internet?</h2>
+            <p>Es una red mundial de computadoras que permite la comunicación y el intercambio de información.</p>
+            <img src="img/2-internet.png">
+        </section>
+        <section>
+            <h2>Usos de Internet</h2>
+            <ul>
+                <li>Navegación web</li>
+                <li>Email</li>
+                <li>Transferencia de archivos</li>
+                <li>Videoconferencias</li>
+                <li>Acceso remoto</li>
+                <li>IoT (Internet de las Cosas)</li>
+                <li>Streaming de video</li>
+            </ul>
+        </section>
+        <section>
+            <h2>¿Qué es la WEB?</h2>
+            <p>Es un sistema de documentos interconectados a través de hipervínculos, accesibles mediante navegadores web.</p>
+            <img src="img/2-web.png">
+        </section>
+    </div>
+  </div>
+  <script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+</body>
+</html>
