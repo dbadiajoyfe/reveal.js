@@ -18,18 +18,65 @@
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
 	<style>
-	/* Permitir scroll interno en cada diapositiva cuando el contenido desborde */
-	.reveal .slides section {
-	  overflow: auto;
-	  -webkit-overflow-scrolling: touch;
-	}
+/* Tipografía y contenedores */
+.reveal {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.reveal .slides section {
+	box-sizing: border-box;
+	padding: 2.0rem 2.5rem;
+	max-width: 1000px;
+	margin: 0 auto;
+	line-height: 1.55;
+	overflow: auto; /* permitir scroll interno cuando haga falta */
+	-webkit-overflow-scrolling: touch;
+}
 
-	/* Limitar la altura de bloques de código para que sean desplazables */
-	.reveal .slides section pre {
-	  max-height: 60vh;
-	  overflow: auto;
-	  -webkit-overflow-scrolling: touch;
-	}
+/* Encabezados más claros y escalados */
+.reveal h1 {
+	font-size: 2.2rem;
+	margin: 0 0 0.4rem 0;
+	letter-spacing: -0.02em;
+}
+.reveal h2 {
+	font-size: 1.35rem;
+	margin: 0 0 0.5rem 0;
+	color: #ffd166; /* acento visible sobre temas oscuros */
+}
+.reveal h3 { font-size: 1.05rem; margin: 0.25rem 0 0.5rem 0; }
+
+/* Párrafos y listas */
+.reveal p { font-size: 1.02rem; margin: 0 0 0.9rem 0; }
+.reveal ul, .reveal ol { margin: 0 0 1rem 1.25rem; }
+
+/* Bloques de código: aspecto más legible y uso eficiente del espacio */
+.reveal pre {
+	background: rgba(0,0,0,0.55); /* compatibilidad con temas oscuros */
+	border-radius: 8px;
+	padding: 1rem;
+	margin: 0 0 1rem 0;
+	font-size: 0.95rem;
+	line-height: 1.45;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+	max-height: 60vh;
+}
+.reveal code { background: rgba(255,255,255,0.03); padding: 0.12rem 0.36rem; border-radius: 4px; }
+
+/* Mejora visual para botones y formularios creados en ejemplos */
+.reveal input, .reveal button, .reveal form { font-size: 0.95rem; }
+.reveal button { padding: 0.45rem 0.75rem; border-radius: 6px; border: none; cursor: pointer; }
+
+/* Adaptaciones responsive */
+@media (max-width: 700px) {
+	.reveal .slides section { padding: 1.2rem; }
+	.reveal h1 { font-size: 1.6rem; }
+	.reveal pre { font-size: 0.88rem; }
+}
+
+/* Accesibilidad: contraste mínimo para el texto principal (no forzar colores del tema) */
+.reveal .slides section, .reveal .slides section p, .reveal .slides section li { color: inherit; }
 	</style>
 </head>
 <body>
@@ -41,7 +88,7 @@
 				</section>
 
 				<section>
-						<h2>1 — Esperar a que cargue el documento</h2>
+						<h2>Esperar a que cargue el documento</h2>
 						<p>Usar el evento <b>DOMContentLoaded</b> para ejecutar código cuando el DOM esté listo:</p>
 						<pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
 	// Aquí va el código que interactúa con el DOM
@@ -50,18 +97,38 @@
 				</section>
 
 				<section>
-						<h2>2 — Añadir escuchadores</h2>
-						<p>Formas sencillas:</p>
-						<pre><code class="language-js">// Asignación directa
-const boton = document.getElementById('miBoton');
-boton.onclick = function() { console.log('click'); };
+					<h2>Obtener referencias al DOM</h2>
+					<p>Formas habituales para obtener elementos del DOM:</p>
+					<pre><code class="language-js">
+		// Por id (devuelve un elemento directamente)
+		const boton = document.getElementById('miBoton');
 
-// Para formularios
-const form = document.querySelector('form');
-form.onsubmit = function(event) { /* ... */ };</code></pre>
-						<p>Alternativa moderna: <code>addEventListener</code> (permite múltiples listeners).</p>
-						<pre><code class="language-js">boton.addEventListener('click', miFuncion);
-form.addEventListener('submit', miSubmitHandler);</code></pre>
+		// Por nombre de etiqueta (devuelve una colección similar a una lista)
+		const forms = document.getElementsByTagName('form');
+		const form = forms[0]; // primer formulario en la página
+
+		// Por clase (devuelve una colección similar a una lista)
+		const cajas = document.getElementsByClassName('caja');
+		const primeraCaja = cajas[0];</code></pre>
+					<p><code>getElementById</code> devuelve un único objeto <code>Element</code>. <code>getElementsByTagName</code> y <code>getElementsByClassName</code> devuelven colecciones (<code>HTMLCollection</code>) que funcionan como listas: accede por posición (por ejemplo <code>[0]</code>) o itera la colección para procesar todos los elementos.</p>
+				</section>
+
+				<section>
+						<h2>2 — Añadir escuchadores</h2>
+						<p>Formas sencillas para adjuntar listeners a elementos (ejemplos usando los métodos anteriores):</p>
+						<pre><code class="language-js">// Asignación directa (propiedades .onclick, .onsubmit, ...)
+		const boton = document.getElementById('miBoton');
+		const form = document.getElementsByTagName('form')[0];
+
+		boton.onclick = function() { console.log('click'); };
+		form.onsubmit = function(event) { event.preventDefault(); /* ... */ };</code></pre>
+						<p><b>Pros</b>: sencillo y rápido para casos simples. <b>Contras</b>: solo un handler por tipo de evento.</p>
+						<pre><code class="language-js">// Alternativa moderna: addEventListener (permite múltiples handlers)
+		boton.addEventListener('click', miFuncion);
+		boton.addEventListener('click', function() { console.log('otro handler'); });
+
+		form.addEventListener('submit', miSubmitHandler);</code></pre>
+						<p><b>Pros</b>: varios listeners, opciones de captura/bubbling y posibilidad de eliminar handlers con <code>removeEventListener</code>.</p>
 				</section>
 
 				<section>
