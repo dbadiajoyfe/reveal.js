@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+		<meta charset="utf-8">
+		<title>JavaScript - Fundamentos</title>
+		<meta name="author" content="David Badía Núñez">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<style>
+	/* Permitir scroll interno en cada diapositiva cuando el contenido desborde */
+	.reveal .slides section {
+	  overflow: auto;
+	  -webkit-overflow-scrolling: touch;
+	}
+
+	/* Limitar la altura de bloques de código para que sean desplazables */
+	.reveal .slides section pre {
+	  max-height: 60vh;
+	  overflow: auto;
+	  -webkit-overflow-scrolling: touch;
+	}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+				<section>
+						<h1>JavaScript - Fundamentos</h1>
+						<p>Principales conceptos para interactuar con el DOM y gestionar eventos.</p>
+				</section>
+
+				<section>
+						<h2>1 — Esperar a que cargue el documento</h2>
+						<p>Usar el evento <b>DOMContentLoaded</b> para ejecutar código cuando el DOM esté listo:</p>
+						<pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
+	// Aquí va el código que interactúa con el DOM
+});</code></pre>
+						<p>Esto evita errores al buscar elementos antes de que existan.</p>
+				</section>
+
+				<section>
+						<h2>2 — Añadir escuchadores</h2>
+						<p>Formas sencillas:</p>
+						<pre><code class="language-js">// Asignación directa
+const boton = document.getElementById('miBoton');
+boton.onclick = function() { console.log('click'); };
+
+// Para formularios
+const form = document.querySelector('form');
+form.onsubmit = function(event) { /* ... */ };</code></pre>
+						<p>Alternativa moderna: <code>addEventListener</code> (permite múltiples listeners).</p>
+						<pre><code class="language-js">boton.addEventListener('click', miFuncion);
+form.addEventListener('submit', miSubmitHandler);</code></pre>
+				</section>
+
+				<section>
+						<h2>3 — Funciones callback y el objeto evento</h2>
+						<p>Ejemplo de callback:</p>
+						<pre><code class="language-js">function onClickBoton(event) {
+	// El elemento que recibió el listener
+	console.log('currentTarget:', event.currentTarget);
+	// El elemento donde se originó el evento (puede ser distinto si hay delegación)
+	console.log('target:', event.target);
+}
+
+boton.addEventListener('click', onClickBoton);
+</code></pre>
+						<p>Para formularios, evitar que se envíen si queremos procesar datos en cliente:</p>
+						<pre><code class="language-js">function miSubmitHandler(event) {
+	event.preventDefault(); // evita el envío
+	// procesar datos aquí
+}
+form.addEventListener('submit', miSubmitHandler);</code></pre>
+				</section>
+
+				<section>
+						<h2>4 — Crear elementos</h2>
+						<p>Dos formas comunes:</p>
+						<h3>a) Usando innerHTML</h3>
+						<pre><code class="language-js">const cont = document.getElementById('contenedor');
+cont.innerHTML = '&lt;div class="tarjeta"&gt;&lt;p&gt;Hola&lt;/p&gt;&lt;/div&gt;';</code></pre>
+						<h3>b) Usando createElement y appendChild</h3>
+						<pre><code class="language-js">const elemento = document.createElement('div');
+elemento.classList.add('tarjeta');
+elemento.textContent = 'Hola';
+const padre = document.getElementById('contenedor');
+padre.appendChild(elemento);</code></pre>
+						<p>La segunda opción es más segura y manipulable en tiempo de ejecución.</p>
+				</section>
+
+				<section>
+						<h2>5 — Gestión de atributos</h2>
+						<h3>a) Forma genérica</h3>
+						<pre><code class="language-js">const img = document.createElement('img');
+img.setAttribute('src', 'foto.png');
+console.log(img.getAttribute('src'));</code></pre>
+						<h3>b) Clases</h3>
+						<pre><code class="language-js">const caja = document.getElementById('caja');
+caja.classList.add('activo');
+caja.classList.remove('activo');
+caja.classList.toggle('visible');</code></pre>
+						<h3>c) Dataset (datos personalizados)</h3>
+						<pre><code class="language-js">const fila = document.createElement('div');
+fila.dataset.idUsuario = 123; // se guarda como 'data-id-usuario'
+console.log(fila.dataset.idUsuario);</code></pre>
+				</section>
+
+				<section>
+						<h2>6 — Listas en JavaScript</h2>
+						<pre><code class="language-js">// Creación
+const lista = [];
+
+// Añadir
+lista.push('manzana');
+
+// Acceso
+console.log(lista[0]);
+
+// Eliminar por valor
+const index = lista.indexOf('manzana');
+if (index !== -1) lista.splice(index, 1);
+
+// Recorrer
+for (const elemento of lista) {
+	console.log(elemento);
+}
+</code></pre>
+						<p>También existen métodos funcionales como <code>map</code>, <code>filter</code> y <code>reduce</code>.</p>
+				</section>
+
+				<section>
+						<h2>Ejemplo práctico: Añadir items a una lista</h2>
+						<p>Mini-snippet para añadir elementos desde un formulario y mostrarlos:</p>
+						<pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
+	const form = document.createElement('form');
+	const input = document.createElement('input');
+	input.name = 'item';
+	const submit = document.createElement('button');
+	submit.type = 'submit';
+	submit.textContent = 'Añadir';
+	const ul = document.createElement('ul');
+
+	form.appendChild(input);
+	form.appendChild(submit);
+	document.body.appendChild(form);
+	document.body.appendChild(ul);
+
+	const items = [];
+
+	form.addEventListener('submit', function(e) {
+		e.preventDefault();
+		const value = input.value.trim();
+		if (!value) return;
+		items.push(value);
+		const li = document.createElement('li');
+		li.textContent = value;
+		ul.appendChild(li);
+		input.value = '';
+	});
+});</code></pre>
+				</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+</body>
+</html>
