@@ -77,14 +77,126 @@
 
 /* Accesibilidad: contraste mínimo para el texto principal (no forzar colores del tema) */
 .reveal .slides section, .reveal .slides section p, .reveal .slides section li { color: inherit; }
+
+/* Fragmentos de bucles: solo se muestra uno a la vez */
+.loop-fragment { display: none; }
+.loop-fragment.visible { display: block; }
+
+/* Fragmentos de bucles: solo se muestra uno a la vez */
+.loop-fragment { display: none; }
+.loop-fragment.visible { display: block; }
 	</style>
 </head>
 <body>
 	<div class="reveal">
 		<div class="slides">
 				<section>
-						<h1>JavaScript - Fundamentos</h1>
-						<p>Principales conceptos para interactuar con el DOM y gestionar eventos.</p>
+						<h1>JavaScript</h1>
+				</section>
+
+				<section>
+						<h2>Declaración de variables: let y const</h2>
+						<p><code>let</code> permite declarar variables que pueden ser reasignadas. <code>const</code> declara constantes que no pueden cambiar su valor después de la asignación inicial.</p>
+						<pre><code class="language-js">let contador = 0;
+contador = 1; // Correcto, se puede reasignar
+
+const PI = 3.1416;
+PI = 3.14; // Error: no se puede reasignar una constante</code></pre>
+						<p>Usa <code>const</code> por defecto para evitar cambios accidentales, y <code>let</code> solo cuando necesites reasignar.</p>
+				</section>
+
+				<section>
+						<h2>Control de flujo</h2>
+						<h3>if-else</h3>
+						<p>Ejecuta bloques de código basados en condiciones booleanas:</p>
+						<pre><code class="language-js">if (edad >= 18) {
+	console.log('Mayor de edad');
+} else {
+	console.log('Menor de edad');
+}</code></pre>
+						<h3>switch</h3>
+						<p>Útil para múltiples casos basados en el valor de una variable:</p>
+						<pre><code class="language-js">switch (dia) {
+	case 'lunes':
+		console.log('Inicio de semana');
+		break;
+	case 'viernes':
+		console.log('Fin de semana laboral');
+		break;
+	default:
+		console.log('Día normal');
+}</code></pre>
+				</section>
+
+				<section>
+						<h2>Bucles</h2>
+						<div class="fragment loop-fragment">
+								<h3>while</h3>
+								<p>Se ejecuta mientras la condición sea verdadera:</p>
+								<pre><code class="language-js">let i = 0;
+while (i < 5) {
+	console.log(i);
+	i++;
+}</code></pre>
+						</div>
+						<div class="fragment loop-fragment">
+								<h3>for clásico</h3>
+								<p>Bucle con inicialización, condición y actualización:</p>
+								<pre><code class="language-js">for (let i = 0; i < 5; i++) {
+	console.log(i);
+}</code></pre>
+						</div>
+						<div class="fragment loop-fragment">
+								<h3>for-in</h3>
+								<p>Itera sobre las propiedades enumerables de un objeto:</p>
+								<pre><code class="language-js">const persona = { nombre: 'Ana', edad: 25 };
+for (let propiedad in persona) {
+	console.log(propiedad + ': ' + persona[propiedad]);
+}</code></pre>
+						</div>
+						<div class="fragment loop-fragment">
+								<h3>for-of</h3>
+								<p>Itera sobre elementos iterables como arrays:</p>
+								<pre><code class="language-js">const frutas = ['manzana', 'pera', 'uva'];
+for (let fruta of frutas) {
+	console.log(fruta);
+}</code></pre>
+						</div>
+						<div class="fragment loop-fragment">
+								<h3>forEach</h3>
+								<p>Método de arrays para ejecutar una función en cada elemento:</p>
+								<pre><code class="language-js">frutas.forEach(function(fruta) {
+	console.log(fruta);
+});
+// O con función flecha:
+frutas.forEach(fruta => console.log(fruta));</code></pre>
+						</div>
+				</section>
+
+				<section>
+						<h2>Funciones</h2>
+						<h3>Función normal (declarada)</h3>
+						<p>Se define con la palabra clave <code>function</code>:</p>
+						<pre><code class="language-js">function saludar(nombre) {
+	return 'Hola, ' + nombre;
+}
+console.log(saludar('Mundo'));</code></pre>
+						<h3>Función anónima</h3>
+						<p>Función sin nombre, asignada a una variable:</p>
+						<pre><code class="language-js">const saludar = function(nombre) {
+	return 'Hola, ' + nombre;
+};
+console.log(saludar('Mundo'));</code></pre>
+						<h3>Función flecha</h3>
+						<p>Sintaxis más concisa, especialmente para funciones simples:</p>
+						<pre><code class="language-js">const saludar = (nombre) => 'Hola, ' + nombre;
+console.log(saludar('Mundo'));
+
+// Para múltiples líneas:
+const sumar = (a, b) => {
+	const resultado = a + b;
+	return resultado;
+};</code></pre>
 				</section>
 
 				<section>
@@ -241,6 +353,36 @@ for (const elemento of lista) {
 });</code></pre>
 				</section>
 
+				<section>
+						<h2>Almacenamiento web: localStorage, sessionStorage y Cookies</h2>
+						<p>Formas de almacenar datos en el navegador del cliente:</p>
+						<h3>localStorage</h3>
+						<p>Almacena datos sin fecha de expiración. Los datos persisten hasta que se eliminan explícitamente. Ideal para datos que deben mantenerse entre sesiones.</p>
+						<h3>sessionStorage</h3>
+						<p>Similar a localStorage, pero los datos se eliminan cuando se cierra la pestaña o ventana del navegador. Útil para datos temporales de una sesión.</p>
+						<h3>Cookies</h3>
+						<p>Pequeños fragmentos de datos enviados con cada solicitud HTTP. Pueden tener fechas de expiración y se usan comúnmente para autenticación o seguimiento. Tienen límites de tamaño (4KB) y se envían automáticamente al servidor.</p>
+						<p>localStorage y sessionStorage son APIs modernas y más convenientes para datos del lado del cliente, mientras que las cookies son más antiguas y se usan para comunicación cliente-servidor.</p>
+				</section>
+
+				<section>
+						<h2>Guardar y recuperar listas de objetos en localStorage</h2>
+						<p>Para almacenar estructuras de datos complejas como listas de objetos, usamos <code>JSON.stringify</code> para convertir a cadena y <code>JSON.parse</code> para recuperar:</p>
+						<pre><code class="language-js">// Crear una lista de objetos
+const listaTareas = [
+	{ id: 1, descripcion: 'Comprar leche', completada: false },
+	{ id: 2, descripcion: 'Hacer ejercicio', completada: true }
+];
+
+// Guardar en localStorage
+localStorage.setItem('tareas', JSON.stringify(listaTareas));
+
+// Recuperar de localStorage
+const tareasGuardadas = JSON.parse(localStorage.getItem('tareas'));
+console.log(tareasGuardadas); // Muestra la lista original</code></pre>
+						<p><b>Nota</b>: Si la clave no existe, <code>getItem</code> devuelve <code>null</code>, por lo que es buena práctica verificar antes de usar <code>JSON.parse</code>.</p>
+				</section>
+
 		</div>
 	</div>
 	<script src="dist/reveal.js"></script>
@@ -256,8 +398,35 @@ for (const elemento of lista) {
 				progress: true,
 				center: true,
 				hash: true,
+				fragments: true,
 
 				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+			// Controlar visibilidad de fragmentos de bucles
+			Reveal.on('fragmentshown', event => {
+				if (event.fragment.classList.contains('loop-fragment')) {
+					// Ocultar todos los loop-fragments
+					document.querySelectorAll('.loop-fragment').forEach(el => {
+						el.classList.remove('visible');
+					});
+					// Mostrar solo el actual
+					event.fragment.classList.add('visible');
+				}
+			});
+
+			Reveal.on('fragmenthidden', event => {
+				if (event.fragment.classList.contains('loop-fragment')) {
+					event.fragment.classList.remove('visible');
+				}
+			});
+
+			// Mostrar el primer fragmento de bucles al cargar
+			document.addEventListener('DOMContentLoaded', () => {
+				const firstLoop = document.querySelector('.loop-fragment');
+				if (firstLoop) {
+					firstLoop.classList.add('visible');
+				}
 			});
 
 		</script>
