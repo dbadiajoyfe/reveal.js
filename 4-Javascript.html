@@ -231,23 +231,42 @@ boton.addEventListener('click', (event) => {
 					<p>Esto evita errores al buscar elementos antes de que existan.</p>
 			</section>
 
+			<section>
 				<section>
-					<h2>Obtener referencias al DOM</h2>
+					<h1>Interacción con el DOM</h1>
+				</section>
+				<section>
+					<h2>Métodos para obtener elementos</h2>
 					<p>Formas habituales para obtener elementos del DOM:</p>
-					<pre><code class="language-js">
-// Por id (devuelve un elemento directamente)
+					<pre><code class="language-js">// Por id (devuelve un elemento directamente)
 const boton = document.getElementById('miBoton');
 
-// Por nombre de etiqueta (devuelve una colección similar a una lista)
+// Por nombre de etiqueta (devuelve una colección)
 const forms = document.getElementsByTagName('form');
-const form = forms[0]; // primer formulario en la página
+const form = forms[0];
 
-// Por clase (devuelve una colección similar a una lista)
+// Por clase (devuelve una colección)
 const cajas = document.getElementsByClassName('caja');
 const primeraCaja = cajas[0];</code></pre>
-					<p><code>getElementById</code> devuelve un único objeto <code>Element</code>. <code>getElementsByTagName</code> y <code>getElementsByClassName</code> devuelven colecciones (<code>HTMLCollection</code>) que funcionan como listas: accede por posición (por ejemplo <code>[0]</code>) o itera la colección para procesar todos los elementos.</p>
+					<p><code>getElementById</code> devuelve un único objeto <code>Element</code>. Los otros devuelven colecciones (<code>HTMLCollection</code>) que funcionan como listas.</p>
 				</section>
+				<section>
+					<h2>parentNode: Acceder al elemento padre</h2>
+					<p>La propiedad <code>parentNode</code> devuelve el elemento padre de un nodo:</p>
+					<pre><code class="language-js">const elemento = document.getElementById('miElemento');
 
+// Acceder al padre inmediato
+const padre = elemento.parentNode;
+
+// Acceder al abuelo
+const abuelo = elemento.parentNode.parentNode;
+
+// Verificar si tiene padre
+if (elemento.parentNode) {
+	console.log('El elemento tiene un padre');
+}</code></pre>
+				</section>
+			</section>
 				<section>
 						<h2>Añadir escuchadores</h2>
 						<p>Formas sencillas para adjuntar listeners a elementos (ejemplos usando los métodos anteriores):</p>
