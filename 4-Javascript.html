@@ -174,6 +174,22 @@ for (let fruta of frutas) {
 // O con función flecha:
 frutas.forEach(fruta => console.log(fruta));</code></pre>
 				</section>
+				<section>
+						<h2>break y continue</h2>
+						<p><code>break</code> detiene la ejecución de un bucle.</p>
+						<p><code>continue</code> salta a la siguiente iteración del bucle.</p>
+						<pre><code class="language-js">// break: detiene el bucle
+for (let i = 0; i < 10; i++) {
+	if (i === 5) break; // sale del bucle cuando i es 5
+	console.log(i); // imprime 0, 1, 2, 3, 4
+}
+
+// continue: salta la iteración actual
+for (let i = 0; i < 5; i++) {
+	if (i === 2) continue; // salta cuando i es 2
+	console.log(i); // imprime 0, 1, 3, 4
+}</code></pre>
+				</section>
 			</section>
 
 				<section>
