@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript - Fundamentos</title>
+	<meta name="author" content="David Badía Núñez">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Reveal.js CSS desde CDN -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+
+	<style>
+		/* Tipografía y contenedores personalizados */
+		.reveal {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		}
+		.reveal .slides section {
+			box-sizing: border-box;
+			padding: 2.0rem 2.5rem;
+			max-width: 1000px;
+			margin: 0 auto;
+			line-height: 1.55;
+			overflow: hidden;
+		}
+
+		/* Encabezados */
+		.reveal h1 {
+			font-size: 2.2rem;
+			margin: 0 0 0.4rem 0;
+			letter-spacing: -0.02em;
+		}
+		.reveal h2 {
+			font-size: 1.35rem;
+			margin: 0 0 0.5rem 0;
+			color: #ffd166;
+		}
+		.reveal h3 { 
+			font-size: 1.05rem; 
+			margin: 0.25rem 0 0.5rem 0; 
+		}
+
+		/* Párrafos y listas */
+		.reveal p { 
+			font-size: 1.02rem; 
+			margin: 0 0 0.9rem 0; 
+		}
+		.reveal ul, .reveal ol { 
+			margin: 0 0 1rem 1.25rem; 
+		}
+
+		/* Bloques de código */
+		.reveal pre {
+			background: rgba(0,0,0,0.55);
+			border-radius: 8px;
+			padding: 1rem;
+			margin: 0 0 1rem 0;
+			font-size: 0.95rem;
+			line-height: 1.45;
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
+			box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+			max-height: 60vh;
+			width: auto;
+		}
+		.reveal code { 
+			background: rgba(255,255,255,0.03); 
+			padding: 0.12rem 0.36rem; 
+			border-radius: 4px; 
+		}
+
+		/* Botones y formularios */
+		.reveal input, .reveal button, .reveal form { 
+			font-size: 0.95rem; 
+		}
+		.reveal button { 
+			padding: 0.45rem 0.75rem; 
+			border-radius: 6px; 
+			border: none; 
+			cursor: pointer; 
+		}
+
+		/* Responsive */
+		@media (max-width: 700px) {
+			.reveal .slides section { padding: 1.2rem; }
+			.reveal h1 { font-size: 1.6rem; }
+			.reveal pre { font-size: 0.88rem; }
+		}
+
+		/* Accesibilidad */
+		.reveal .slides section, 
+		.reveal .slides section p, 
+		.reveal .slides section li { 
+			color: inherit; 
+		}
+	</style>
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>JavaScript</h1>
+			</section>
+
+			<section>
+				<h2>Declaración de variables: let y const</h2>
+				<p><code>let</code> permite declarar variables que pueden ser reasignadas. <code>const</code> declara constantes que no pueden cambiar su valor después de la asignación inicial.</p>
+				<pre><code class="language-javascript">let contador = 0;
+contador = 1; // Correcto, se puede reasignar
+
+const PI = 3.1416;
+PI = 3.14; // Error: no se puede reasignar una constante</code></pre>
+				<p>Usa <code>const</code> por defecto para evitar cambios accidentales, y <code>let</code> solo cuando necesites reasignar.</p>
+			</section>
+
+			<section>
+				<section>
+					<h1>Control de flujo</h1>
+				</section>
+				<section>
+					<h2>if-else</h2>
+					<p>Ejecuta bloques de código basados en condiciones booleanas:</p>
+					<pre><code class="language-javascript">if (edad >= 18) {
+	console.log('Mayor de edad');
+} else {
+	console.log('Menor de edad');
+}</code></pre>
+				</section>
+				<section>
+					<h2>switch</h2>
+					<p>Útil para múltiples casos basados en el valor de una variable:</p>
+					<pre><code class="language-javascript">switch (dia) {
+	case 'lunes':
+		console.log('Inicio de semana');
+		break;
+	case 'viernes':
+		console.log('Fin de semana laboral');
+		break;
+	default:
+		console.log('Día normal');
+}</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Bucles</h1>
+				</section>
+				<section>
+					<h2>while</h2>
+					<p>Se ejecuta mientras la condición sea verdadera:</p>
+					<pre><code class="language-javascript">let i = 0;
+while (i < 5) {
+	console.log(i);
+	i++;
+}</code></pre>
+				</section>
+				<section>
+					<h2>for clásico</h2>
+					<p>Bucle con inicialización, condición y actualización:</p>
+					<pre><code class="language-javascript">for (let i = 0; i < 5; i++) {
+	console.log(i);
+}</code></pre>
+				</section>
+				<section>
+					<h2>for-in</h2>
+					<p>Itera sobre las propiedades enumerables de un objeto:</p>
+					<pre><code class="language-javascript">const persona = { nombre: 'Ana', edad: 25 };
+for (let propiedad in persona) {
+	console.log(propiedad + ': ' + persona[propiedad]);
+}</code></pre>
+				</section>
+				<section>
+					<h2>for-of</h2>
+					<p>Itera sobre elementos iterables como arrays:</p>
+					<pre><code class="language-javascript">const frutas = ['manzana', 'pera', 'uva'];
+for (let fruta of frutas) {
+	console.log(fruta);
+}</code></pre>
+				</section>
+				<section>
+					<h2>forEach</h2>
+					<p>Método de arrays para ejecutar una función en cada elemento:</p>
+					<pre><code class="language-javascript">frutas.forEach(function(fruta) {
+	console.log(fruta);
+});
+frutas.forEach(fruta => console.log(fruta));</code></pre>
+				</section>
+				<section>
+					<h2>break y continue</h2>
+					<p><code>break</code> detiene la ejecución de un bucle. <code>continue</code> salta a la siguiente iteración:</p>
+					<pre><code class="language-javascript">for (let i = 0; i < 10; i++) {
+	if (i === 5) break;
+	console.log(i);
+}
+
+for (let i = 0; i < 5; i++) {
+	if (i === 2) continue;
+	console.log(i);
+}</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Funciones</h1>
+				</section>
+				<section>
+					<h2>Función normal (declarada)</h2>
+					<p>Se define con la palabra clave <code>function</code>:</p>
+					<pre><code class="language-javascript">function saludar(nombre) {
+	return 'Hola, ' + nombre;
+}
+console.log(saludar('Mundo'));</code></pre>
+				</section>
+				<section>
+					<h2>Función anónima</h2>
+					<p>Función sin nombre, asignada a una variable:</p>
+					<pre><code class="language-javascript">const saludar = function(nombre) {
+	return 'Hola, ' + nombre;
+};
+
+// Uso en escuchadores
+const boton = document.getElementById('miBoton');
+boton.addEventListener('click', function(event) {
+	console.log('Botón clickeado');
+});</code></pre>
+				</section>
+				<section>
+					<h2>Función flecha</h2>
+					<p>Sintaxis más concisa:</p>
+					<pre><code class="language-javascript">const saludar = (nombre) => 'Hola, ' + nombre;
+
+// Uso en escuchadores
+const boton = document.getElementById('miBoton');
+boton.addEventListener('click', (event) => {
+	console.log('Botón clickeado');
+});</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<h2>Esperar a que cargue el documento</h2>
+				<p>Usar el evento <b>DOMContentLoaded</b> para ejecutar código cuando el DOM esté listo:</p>
+				<pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function() {
+	// Aquí va el código que interactúa con el DOM
+});</code></pre>
+				<p>Esto evita errores al buscar elementos antes de que existan.</p>
+			</section>
+
+			<section>
+				<section>
+					<h1>Interacción con el DOM</h1>
+				</section>
+				<section>
+					<h2>Métodos para obtener elementos</h2>
+					<pre><code class="language-javascript">// Por id
+const boton = document.getElementById('miBoton');
+
+// Por etiqueta
+const forms = document.getElementsByTagName('form');
+const form = forms[0];
+
+// Por clase
+const cajas = document.getElementsByClassName('caja');
+const primeraCaja = cajas[0];</code></pre>
+				</section>
+				<section>
+					<h2>parentNode: Acceder al elemento padre</h2>
+					<pre><code class="language-javascript">const elemento = document.getElementById('miElemento');
+
+// Acceder al padre inmediato
+const padre = elemento.parentNode;
+
+// Acceder al abuelo
+const abuelo = elemento.parentNode.parentNode;</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Objetos</h1>
+				</section>
+				<section>
+					<h2>Creación de objetos</h2>
+					<p>Los objetos se crean usando llaves <code>{}</code> con pares clave-valor:</p>
+					<pre><code class="language-javascript">const persona = {
+	nombre: 'Juan',
+	edad: 30,
+	ciudad: 'Madrid'
+};</code></pre>
+				</section>
+				<section>
+					<h2>Acceso a propiedades</h2>
+					<pre><code class="language-javascript">// Notación de punto
+console.log(persona.nombre); // 'Juan'
+
+// Notación de corchetes
+console.log(persona['edad']); // 30</code></pre>
+				</section>
+				<section>
+					<h2>Lectura y modificación</h2>
+					<pre><code class="language-javascript">// Modificación
+persona.edad = 31;
+persona['ciudad'] = 'Barcelona';
+
+// Añadir nueva propiedad
+persona.email = 'juan@example.com';
+
+// Eliminar propiedad
+delete persona.ciudad;</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Almacenamiento web</h1>
+				</section>
+				<section>
+					<h2>localStorage</h2>
+					<p>Almacena datos sin fecha de expiración:</p>
+					<pre><code class="language-javascript">// Guardar
+localStorage.setItem('nombre', 'Juan');
+
+// Recuperar
+const nombre = localStorage.getItem('nombre');
+
+// Guardar objeto
+const usuario = { id: 1, nombre: 'Ana' };
+localStorage.setItem('usuario', JSON.stringify(usuario));
+
+// Recuperar objeto
+const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
+
+// Limpiar
+localStorage.removeItem('nombre');
+localStorage.clear();</code></pre>
+				</section>
+				<section>
+					<h2>sessionStorage</h2>
+					<p>Similar a localStorage, pero se elimina al cerrar la pestaña:</p>
+					<pre><code class="language-javascript">// El funcionamiento es idéntico a localStorage
+sessionStorage.setItem('token', 'abc123xyz');
+const token = sessionStorage.getItem('token');
+
+// Guardar array
+const carrito = [
+	{ id: 1, producto: 'Laptop' },
+	{ id: 2, producto: 'Mouse' }
+];
+sessionStorage.setItem('carrito', JSON.stringify(carrito));
+
+// Recuperar
+const carritoGuardado = JSON.parse(sessionStorage.getItem('carrito'));</code></pre>
+				</section>
+				<section>
+					<h2>Cookies</h2>
+					<p>Pequeños fragmentos de datos con control de expiración. Se envían con cada solicitud HTTP.</p>
+					<p>localStorage y sessionStorage son APIs modernas y más convenientes para datos del lado del cliente.</p>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<!-- Reveal.js desde CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/zoom/zoom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/search/search.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/markdown/markdown.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+	<script>
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+			transition: 'slide',
+			plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown ]
+		});
+
+		// Resaltado de código
+		document.querySelectorAll('pre code').forEach((block) => {
+			hljs.highlightElement(block);
+		});
+	</script>
+</body>
+</html>
