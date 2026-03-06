@@ -101,17 +101,22 @@ PI = 3.14; // Error: no se puede reasignar una constante</code></pre>
 				</section>
 
 				<section>
-						<h2>Control de flujo</h2>
-						<h3>if-else</h3>
-						<p>Ejecuta bloques de código basados en condiciones booleanas:</p>
-						<pre><code class="language-js">if (edad >= 18) {
+					<section>
+							<h1>Control de flujo</h1>
+					</section>
+					<section>
+							<h2>if-else</h2>
+							<p>Ejecuta bloques de código basados en condiciones booleanas:</p>
+							<pre><code class="language-js">if (edad >= 18) {
 	console.log('Mayor de edad');
 } else {
 	console.log('Menor de edad');
 }</code></pre>
-						<h3>switch</h3>
-						<p>Útil para múltiples casos basados en el valor de una variable:</p>
-						<pre><code class="language-js">switch (dia) {
+					</section>
+					<section>
+							<h2>switch</h2>
+							<p>Útil para múltiples casos basados en el valor de una variable:</p>
+							<pre><code class="language-js">switch (dia) {
 	case 'lunes':
 		console.log('Inicio de semana');
 		break;
@@ -121,6 +126,7 @@ PI = 3.14; // Error: no se puede reasignar una constante</code></pre>
 	default:
 		console.log('Día normal');
 }</code></pre>
+					</section>
 				</section>
 
 			<section>
@@ -171,20 +177,27 @@ frutas.forEach(fruta => console.log(fruta));</code></pre>
 			</section>
 
 				<section>
-						<h2>Funciones</h2>
-						<h3>Función normal (declarada)</h3>
+				<section>
+						<h1>Funciones</h1>
+				</section>
+				<section>
+						<h2>Función normal (declarada)</h2>
 						<p>Se define con la palabra clave <code>function</code>:</p>
 						<pre><code class="language-js">function saludar(nombre) {
 	return 'Hola, ' + nombre;
 }
 console.log(saludar('Mundo'));</code></pre>
-						<h3>Función anónima</h3>
+				</section>
+				<section>
+						<h2>Función anónima</h2>
 						<p>Función sin nombre, asignada a una variable:</p>
 						<pre><code class="language-js">const saludar = function(nombre) {
 	return 'Hola, ' + nombre;
 };
 console.log(saludar('Mundo'));</code></pre>
-						<h3>Función flecha</h3>
+				</section>
+				<section>
+						<h2>Función flecha</h2>
 						<p>Sintaxis más concisa, especialmente para funciones simples:</p>
 						<pre><code class="language-js">const saludar = (nombre) => 'Hola, ' + nombre;
 console.log(saludar('Mundo'));
@@ -195,15 +208,16 @@ const sumar = (a, b) => {
 	return resultado;
 };</code></pre>
 				</section>
+			</section>
 
-				<section>
-						<h2>Esperar a que cargue el documento</h2>
-						<p>Usar el evento <b>DOMContentLoaded</b> para ejecutar código cuando el DOM esté listo:</p>
-						<pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
+			<section>
+					<h2>Esperar a que cargue el documento</h2>
+					<p>Usar el evento <b>DOMContentLoaded</b> para ejecutar código cuando el DOM esté listo:</p>
+					<pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
 	// Aquí va el código que interactúa con el DOM
 });</code></pre>
-						<p>Esto evita errores al buscar elementos antes de que existan.</p>
-				</section>
+					<p>Esto evita errores al buscar elementos antes de que existan.</p>
+			</section>
 
 				<section>
 					<h2>Obtener referencias al DOM</h2>
