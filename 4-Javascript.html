@@ -276,11 +276,10 @@ form.addEventListener('submit', miSubmitHandler);</code></pre>
 
 				<section>
 						<h2>Crear elementos</h2>
-						<p>Dos formas comunes:</p>
-						<h3>a) Usando innerHTML</h3>
+						<h3>Usando innerHTML</h3>
 						<pre><code class="language-js">const cont = document.getElementById('contenedor');
 cont.innerHTML = '&lt;div class="tarjeta"&gt;&lt;p&gt;Hola&lt;/p&gt;&lt;/div&gt;';</code></pre>
-						<h3>b) Usando createElement y appendChild</h3>
+						<h3>Usando createElement y appendChild</h3>
 						<pre><code class="language-js">const elemento = document.createElement('div');
 elemento.classList.add('tarjeta');
 elemento.innerHTML = 'Hola';
@@ -364,8 +363,49 @@ for (const elemento of lista) {
 });</code></pre>
 				</section>
 
+				<section>				<section>
+						<h1>Objetos</h1>
+				</section>
 				<section>
-						<h2>Almacenamiento web: localStorage, sessionStorage y Cookies</h2>
+						<h2>Creación de objetos</h2>
+						<p>Los objetos se crean usando llaves <code>{}</code> con pares clave-valor:</p>
+						<pre><code class="language-js">const persona = {
+	nombre: 'Juan',
+	edad: 30,
+	ciudad: 'Madrid'
+};</code></pre>
+				</section>
+				<section>
+						<h2>Acceso a propiedades</h2>
+						<p>Se accede usando notación de punto o corchetes:</p>
+						<pre><code class="language-js">// Notación de punto
+console.log(persona.nombre); // 'Juan'
+
+// Notación de corchetes
+console.log(persona['edad']); // 30
+
+// Acceso a propiedad inexistente devuelve undefined
+console.log(persona.pais); // undefined</code></pre>
+				</section>
+				<section>
+						<h2>Lectura y modificación</h2>
+						<p>Puedes leer, modificar y añadir nuevas propiedades:</p>
+						<pre><code class="language-js">// Lectura
+const nombre = persona.nombre; // 'Juan'
+
+// Modificación
+persona.edad = 31;
+persona['ciudad'] = 'Barcelona';
+
+// Añadir nueva propiedad
+persona.email = 'juan@example.com';
+
+// Eliminar propiedad
+delete persona.ciudad;</code></pre>
+				</section>
+			</section>
+
+			<section>						<h2>Almacenamiento web: localStorage, sessionStorage y Cookies</h2>
 						<p>Formas de almacenar datos en el navegador del cliente:</p>
 						<h3>localStorage</h3>
 						<p>Almacena datos sin fecha de expiración. Los datos persisten hasta que se eliminan explícitamente. Ideal para datos que deben mantenerse entre sesiones.</p>
