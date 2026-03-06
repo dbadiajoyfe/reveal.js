@@ -28,8 +28,7 @@
 	max-width: 1000px;
 	margin: 0 auto;
 	line-height: 1.55;
-	overflow: auto; /* permitir scroll interno cuando haga falta */
-	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
 }
 
 /* Encabezados más claros y escalados */
@@ -81,10 +80,6 @@
 /* Fragmentos de bucles: solo se muestra uno a la vez */
 .loop-fragment { display: none; }
 .loop-fragment.visible { display: block; }
-
-/* Fragmentos de bucles: solo se muestra uno a la vez */
-.loop-fragment { display: none; }
-.loop-fragment.visible { display: block; }
 	</style>
 </head>
 <body>
@@ -128,50 +123,52 @@ PI = 3.14; // Error: no se puede reasignar una constante</code></pre>
 }</code></pre>
 				</section>
 
+			<section>
 				<section>
-						<h2>Bucles</h2>
-						<div class="fragment loop-fragment">
-								<h3>while</h3>
-								<p>Se ejecuta mientras la condición sea verdadera:</p>
-								<pre><code class="language-js">let i = 0;
+						<h1>Bucles</h1>
+				</section>
+				<section>
+						<h2>while</h2>
+						<p>Se ejecuta mientras la condición sea verdadera:</p>
+						<pre><code class="language-js">let i = 0;
 while (i < 5) {
 	console.log(i);
 	i++;
 }</code></pre>
-						</div>
-						<div class="fragment loop-fragment">
-								<h3>for clásico</h3>
-								<p>Bucle con inicialización, condición y actualización:</p>
-								<pre><code class="language-js">for (let i = 0; i < 5; i++) {
+				</section>
+				<section>
+						<h2>for clásico</h2>
+						<p>Bucle con inicialización, condición y actualización:</p>
+						<pre><code class="language-js">for (let i = 0; i < 5; i++) {
 	console.log(i);
 }</code></pre>
-						</div>
-						<div class="fragment loop-fragment">
-								<h3>for-in</h3>
-								<p>Itera sobre las propiedades enumerables de un objeto:</p>
-								<pre><code class="language-js">const persona = { nombre: 'Ana', edad: 25 };
+				</section>
+				<section>
+						<h2>for-in</h2>
+						<p>Itera sobre las propiedades enumerables de un objeto:</p>
+						<pre><code class="language-js">const persona = { nombre: 'Ana', edad: 25 };
 for (let propiedad in persona) {
 	console.log(propiedad + ': ' + persona[propiedad]);
 }</code></pre>
-						</div>
-						<div class="fragment loop-fragment">
-								<h3>for-of</h3>
-								<p>Itera sobre elementos iterables como arrays:</p>
-								<pre><code class="language-js">const frutas = ['manzana', 'pera', 'uva'];
+				</section>
+				<section>
+						<h2>for-of</h2>
+						<p>Itera sobre elementos iterables como arrays:</p>
+						<pre><code class="language-js">const frutas = ['manzana', 'pera', 'uva'];
 for (let fruta of frutas) {
 	console.log(fruta);
 }</code></pre>
-						</div>
-						<div class="fragment loop-fragment">
-								<h3>forEach</h3>
-								<p>Método de arrays para ejecutar una función en cada elemento:</p>
-								<pre><code class="language-js">frutas.forEach(function(fruta) {
+				</section>
+				<section>
+						<h2>forEach</h2>
+						<p>Método de arrays para ejecutar una función en cada elemento:</p>
+						<pre><code class="language-js">frutas.forEach(function(fruta) {
 	console.log(fruta);
 });
 // O con función flecha:
 frutas.forEach(fruta => console.log(fruta));</code></pre>
-						</div>
 				</section>
+			</section>
 
 				<section>
 						<h2>Funciones</h2>
@@ -398,35 +395,8 @@ console.log(tareasGuardadas); // Muestra la lista original</code></pre>
 				progress: true,
 				center: true,
 				hash: true,
-				fragments: true,
 
 				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
-			});
-
-			// Controlar visibilidad de fragmentos de bucles
-			Reveal.on('fragmentshown', event => {
-				if (event.fragment.classList.contains('loop-fragment')) {
-					// Ocultar todos los loop-fragments
-					document.querySelectorAll('.loop-fragment').forEach(el => {
-						el.classList.remove('visible');
-					});
-					// Mostrar solo el actual
-					event.fragment.classList.add('visible');
-				}
-			});
-
-			Reveal.on('fragmenthidden', event => {
-				if (event.fragment.classList.contains('loop-fragment')) {
-					event.fragment.classList.remove('visible');
-				}
-			});
-
-			// Mostrar el primer fragmento de bucles al cargar
-			document.addEventListener('DOMContentLoaded', () => {
-				const firstLoop = document.querySelector('.loop-fragment');
-				if (firstLoop) {
-					firstLoop.classList.add('visible');
-				}
 			});
 
 		</script>
