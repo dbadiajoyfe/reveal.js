@@ -194,7 +194,13 @@ console.log(saludar('Mundo'));</code></pre>
 						<pre><code class="language-js">const saludar = function(nombre) {
 	return 'Hola, ' + nombre;
 };
-console.log(saludar('Mundo'));</code></pre>
+console.log(saludar('Mundo'));
+
+// Uso en escuchadores
+const boton = document.getElementById('miBoton');
+boton.addEventListener('click', function(event) {
+	console.log('Botón clickeado');
+});</code></pre>
 				</section>
 				<section>
 						<h2>Función flecha</h2>
@@ -206,7 +212,13 @@ console.log(saludar('Mundo'));
 const sumar = (a, b) => {
 	const resultado = a + b;
 	return resultado;
-};</code></pre>
+};
+
+// Uso en escuchadores (muy común)
+const boton = document.getElementById('miBoton');
+boton.addEventListener('click', (event) => {
+	console.log('Botón clickeado');
+});</code></pre>
 				</section>
 			</section>
 
@@ -223,16 +235,16 @@ const sumar = (a, b) => {
 					<h2>Obtener referencias al DOM</h2>
 					<p>Formas habituales para obtener elementos del DOM:</p>
 					<pre><code class="language-js">
-		// Por id (devuelve un elemento directamente)
-		const boton = document.getElementById('miBoton');
+// Por id (devuelve un elemento directamente)
+const boton = document.getElementById('miBoton');
 
-		// Por nombre de etiqueta (devuelve una colección similar a una lista)
-		const forms = document.getElementsByTagName('form');
-		const form = forms[0]; // primer formulario en la página
+// Por nombre de etiqueta (devuelve una colección similar a una lista)
+const forms = document.getElementsByTagName('form');
+const form = forms[0]; // primer formulario en la página
 
-		// Por clase (devuelve una colección similar a una lista)
-		const cajas = document.getElementsByClassName('caja');
-		const primeraCaja = cajas[0];</code></pre>
+// Por clase (devuelve una colección similar a una lista)
+const cajas = document.getElementsByClassName('caja');
+const primeraCaja = cajas[0];</code></pre>
 					<p><code>getElementById</code> devuelve un único objeto <code>Element</code>. <code>getElementsByTagName</code> y <code>getElementsByClassName</code> devuelven colecciones (<code>HTMLCollection</code>) que funcionan como listas: accede por posición (por ejemplo <code>[0]</code>) o itera la colección para procesar todos los elementos.</p>
 				</section>
 
@@ -405,34 +417,60 @@ delete persona.ciudad;</code></pre>
 				</section>
 			</section>
 
-			<section>						<h2>Almacenamiento web: localStorage, sessionStorage y Cookies</h2>
-						<p>Formas de almacenar datos en el navegador del cliente:</p>
-						<h3>localStorage</h3>
+			<section>
+				<section>
+						<h1>Almacenamiento web</h1>
+				</section>
+				<section>
+						<h2>localStorage</h2>
 						<p>Almacena datos sin fecha de expiración. Los datos persisten hasta que se eliminan explícitamente. Ideal para datos que deben mantenerse entre sesiones.</p>
-						<h3>sessionStorage</h3>
+						<pre><code class="language-js">// Guardar un valor simple
+localStorage.setItem('nombre', 'Juan');
+
+// Recuperar un valor
+const nombre = localStorage.getItem('nombre'); // 'Juan'
+
+// Guardar un objeto (convertir a JSON)
+const usuario = { id: 1, nombre: 'Ana' };
+localStorage.setItem('usuario', JSON.stringify(usuario));
+
+// Recuperar y convertir desde JSON
+const usuarioGuardado = JSON.parse(localStorage.getItem('usuario'));
+
+// Eliminar un elemento
+localStorage.removeItem('nombre');
+
+// Limpiar todo el almacenamiento
+localStorage.clear();</code></pre>
+				</section>
+				<section>
+						<h2>sessionStorage</h2>
 						<p>Similar a localStorage, pero los datos se eliminan cuando se cierra la pestaña o ventana del navegador. Útil para datos temporales de una sesión.</p>
-						<h3>Cookies</h3>
+						<pre><code class="language-js">// El funcionamiento es idéntico a localStorage
+sessionStorage.setItem('token', 'abc123xyz');
+
+// Recuperar
+const token = sessionStorage.getItem('token'); // 'abc123xyz'
+
+// Guardar un array de objetos
+const carrito = [
+	{ id: 1, producto: 'Laptop', precio: 999 },
+	{ id: 2, producto: 'Mouse', precio: 25 }
+];
+sessionStorage.setItem('carrito', JSON.stringify(carrito));
+
+// Recuperar el array
+const carritoGuardado = JSON.parse(sessionStorage.getItem('carrito'));
+
+// Eliminar
+sessionStorage.removeItem('token');</code></pre>
+				</section>
+				<section>
+						<h2>Cookies</h2>
 						<p>Pequeños fragmentos de datos enviados con cada solicitud HTTP. Pueden tener fechas de expiración y se usan comúnmente para autenticación o seguimiento. Tienen límites de tamaño (4KB) y se envían automáticamente al servidor.</p>
 						<p>localStorage y sessionStorage son APIs modernas y más convenientes para datos del lado del cliente, mientras que las cookies son más antiguas y se usan para comunicación cliente-servidor.</p>
 				</section>
-
-				<section>
-						<h2>Guardar y recuperar listas de objetos en localStorage</h2>
-						<p>Para almacenar estructuras de datos complejas como listas de objetos, usamos <code>JSON.stringify</code> para convertir a cadena y <code>JSON.parse</code> para recuperar:</p>
-						<pre><code class="language-js">// Crear una lista de objetos
-const listaTareas = [
-	{ id: 1, descripcion: 'Comprar leche', completada: false },
-	{ id: 2, descripcion: 'Hacer ejercicio', completada: true }
-];
-
-// Guardar en localStorage
-localStorage.setItem('tareas', JSON.stringify(listaTareas));
-
-// Recuperar de localStorage
-const tareasGuardadas = JSON.parse(localStorage.getItem('tareas'));
-console.log(tareasGuardadas); // Muestra la lista original</code></pre>
-						<p><b>Nota</b>: Si la clave no existe, <code>getItem</code> devuelve <code>null</code>, por lo que es buena práctica verificar antes de usar <code>JSON.parse</code>.</p>
-				</section>
+			</section>
 
 		</div>
 	</div>
