@@ -114,31 +114,31 @@
 				</section>
 
 				<section>
-						<h2>2 — Añadir escuchadores</h2>
+						<h2>Añadir escuchadores</h2>
 						<p>Formas sencillas para adjuntar listeners a elementos (ejemplos usando los métodos anteriores):</p>
-						<pre><code class="language-js">// Asignación directa (propiedades .onclick, .onsubmit, ...)
-		const boton = document.getElementById('miBoton');
-		const form = document.getElementsByTagName('form')[0];
+						<pre><code class="language-js">
+// Asignación directa (propiedades .onclick, .onsubmit, ...)
+const boton = document.getElementById('miBoton');
+const form = document.getElementsByTagName('form')[0];
 
-		boton.onclick = function() { console.log('click'); };
-		form.onsubmit = function(event) { event.preventDefault(); /* ... */ };</code></pre>
+boton.onclick = function() { console.log('click'); };
+form.onsubmit = function(event) { event.preventDefault(); /* ... */ };</code></pre>
 						<p><b>Pros</b>: sencillo y rápido para casos simples. <b>Contras</b>: solo un handler por tipo de evento.</p>
-						<pre><code class="language-js">// Alternativa moderna: addEventListener (permite múltiples handlers)
-		boton.addEventListener('click', miFuncion);
-		boton.addEventListener('click', function() { console.log('otro handler'); });
+						<pre><code class="language-js">
+// Alternativa moderna: addEventListener (permite múltiples handlers)
+boton.addEventListener('click', miFuncion);
+boton.addEventListener('click', function() { console.log('otro handler'); });
 
-		form.addEventListener('submit', miSubmitHandler);</code></pre>
+form.addEventListener('submit', miSubmitHandler);</code></pre>
 						<p><b>Pros</b>: varios listeners, opciones de captura/bubbling y posibilidad de eliminar handlers con <code>removeEventListener</code>.</p>
 				</section>
 
 				<section>
-						<h2>3 — Funciones callback y el objeto evento</h2>
+						<h2>Funciones callback y el objeto evento</h2>
 						<p>Ejemplo de callback:</p>
 						<pre><code class="language-js">function onClickBoton(event) {
-	// El elemento que recibió el listener
+	// El elemento que recibió el listener (el botón en este caso)
 	console.log('currentTarget:', event.currentTarget);
-	// El elemento donde se originó el evento (puede ser distinto si hay delegación)
-	console.log('target:', event.target);
 }
 
 boton.addEventListener('click', onClickBoton);
@@ -152,7 +152,7 @@ form.addEventListener('submit', miSubmitHandler);</code></pre>
 				</section>
 
 				<section>
-						<h2>4 — Crear elementos</h2>
+						<h2>Crear elementos</h2>
 						<p>Dos formas comunes:</p>
 						<h3>a) Usando innerHTML</h3>
 						<pre><code class="language-js">const cont = document.getElementById('contenedor');
@@ -160,31 +160,33 @@ cont.innerHTML = '&lt;div class="tarjeta"&gt;&lt;p&gt;Hola&lt;/p&gt;&lt;/div&gt;
 						<h3>b) Usando createElement y appendChild</h3>
 						<pre><code class="language-js">const elemento = document.createElement('div');
 elemento.classList.add('tarjeta');
-elemento.textContent = 'Hola';
+elemento.innerHTML = 'Hola';
 const padre = document.getElementById('contenedor');
 padre.appendChild(elemento);</code></pre>
-						<p>La segunda opción es más segura y manipulable en tiempo de ejecución.</p>
+						<p>La segunda opción es más segura y manipulable en tiempo de ejecución. Y permite añadir escuchadores al disponer del objeto.</p>
 				</section>
 
 				<section>
-						<h2>5 — Gestión de atributos</h2>
-						<h3>a) Forma genérica</h3>
+						<h2>Gestión de atributos</h2>
+						<h3>Forma genérica</h3>
 						<pre><code class="language-js">const img = document.createElement('img');
 img.setAttribute('src', 'foto.png');
 console.log(img.getAttribute('src'));</code></pre>
-						<h3>b) Clases</h3>
+						<h3>Forma específica para Clases</h3>
 						<pre><code class="language-js">const caja = document.getElementById('caja');
 caja.classList.add('activo');
 caja.classList.remove('activo');
-caja.classList.toggle('visible');</code></pre>
-						<h3>c) Dataset (datos personalizados)</h3>
+caja.classList.toggle('visible');
+// toggle: si no está activa, la activa; si está activa, la desactiva
+</code></pre>
+						<h3>Forma específica para datos personalizados - Dataset</h3>
 						<pre><code class="language-js">const fila = document.createElement('div');
 fila.dataset.idUsuario = 123; // se guarda como 'data-id-usuario'
 console.log(fila.dataset.idUsuario);</code></pre>
 				</section>
 
 				<section>
-						<h2>6 — Listas en JavaScript</h2>
+						<h2>Listas en JavaScript</h2>
 						<pre><code class="language-js">// Creación
 const lista = [];
 
@@ -196,14 +198,14 @@ console.log(lista[0]);
 
 // Eliminar por valor
 const index = lista.indexOf('manzana');
-if (index !== -1) lista.splice(index, 1);
+if (index >= 0) lista.splice(index, 1);
 
 // Recorrer
 for (const elemento of lista) {
 	console.log(elemento);
 }
 </code></pre>
-						<p>También existen métodos funcionales como <code>map</code>, <code>filter</code> y <code>reduce</code>.</p>
+						<p>También existen métodos funcionales como <code>find</code>, <code>filter</code>...</p>
 				</section>
 
 				<section>
@@ -227,7 +229,8 @@ for (const elemento of lista) {
 
 	form.addEventListener('submit', function(e) {
 		e.preventDefault();
-		const value = input.value.trim();
+		const form = e.currentTarget;
+		const value = e.elements.item.value.trim();
 		if (!value) return;
 		items.push(value);
 		const li = document.createElement('li');
